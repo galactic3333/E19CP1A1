@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
+
+<h1>Personas Asignadas al Proyecto:</h1>
+<p><%= @project.people.pluck(:name).join(", ") %></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= person.name %></td>
+        <td><%= person.email %></td>
+        <td><%= link_to 'Show', person %></td>
+        <td><%= button_to('Remover del Proyecto', remv_people_project_path(person_id: person.id), :method => :delete, :class =>'btn btn-primary') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Asignar Más Personas al Proyecto:</h1>
+<%= link_to 'Asignar Usuario', people_avail_project_path %>
+
+

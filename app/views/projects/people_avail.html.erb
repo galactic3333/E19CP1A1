@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>People</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= person.name %></td>
+        <td><%= person.email %></td>
+        <td><%= link_to 'Show', person %></td>
+        <td><%= button_to 'Asignar al Proyecto', add_people_project_path(person_id: person.id), :method => :post %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Person', new_person_path %>
